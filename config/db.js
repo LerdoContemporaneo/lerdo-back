@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import mysql2 from "mysql2"; // 👈 Importación del módulo real
+import mysql2 from "mysql2"; 
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,7 +11,7 @@ const db = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "mysql",
-    dialectModule: mysql2, // 👈 Aquí va el módulo importado, no una cadena
+    dialectModule: mysql2,
     logging: false,
   }
 );

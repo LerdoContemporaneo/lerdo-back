@@ -4,6 +4,7 @@ import session from "express-session";
 import dotenv from "dotenv";
 import db from "./config/db.js";
 import SequelizeStore from "connect-session-sequelize";
+
 import UserRoute from "./routes/UserRoute.js";
 import AlumnoRoute from "./routes/AlumnoRoute.js";
 import AsistenciaMaestroRoute from "./routes/AsistenciaMaestroRoute.js";
@@ -16,33 +17,46 @@ import TareaRoute from "./routes/TareaRoute.js";
 
 import "./models/index.js";
 
-dotenv.config();
+
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const app = express();
 
-const sessionStore = SequelizeStore(session.Store);
 
-const store = new sessionStore({
-    db: db
+const SequelizeSessionStore = SequelizeStore(session.Store);
+const store = new SequelizeSessionStore({
+  db: db,
 });
 
-//(async() => {
-  //await db.sync();
-//}) ();
 
-app.use(session({
+app.use(
+  session({
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
     store: store,
-    cookie: { secure: 'auto',
-          }
-}))
-app.use(cors({
+    cookie: {
+      secure: "auto",
+    },
+  })
+);
+
+
+app.use(
+  cors({
     credentials: true,
-    origin: 'http://localhost:3000'
-}));
+    origin: [
+      "http://localhost:3000",
+     
+    ],
+  })
+);
+
 app.use(express.json());
+
+
 app.use(UserRoute);
 app.use(AlumnoRoute);
 app.use(AsistenciaMaestroRoute);
@@ -53,7 +67,17 @@ app.use(ReportesRoute);
 app.use(AuthRoute);
 app.use(TareaRoute);
 
-store.sync();
 
-app.listen(process.env.PORT , () => {
-    console.log('Servidor funcionando')});
+(async () => {
+  try {
+    await db.authenticate();
+    console.log("✅ Conexión a MySQL exitosa");
+    await store.sync();
+  } catch (error) {
+    console.error("❌ Error al conectar a MySQL:", error.message);
+  }
+})();
+
+
+const PORT = process.env.PORT || 3000;
+
