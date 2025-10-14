@@ -73,7 +73,7 @@ app.use(TareaRoute);
     await db.authenticate();
     console.log("✅ Conexión a MySQL exitosa");
 
-    await db.sync({ force: true }); // recrea todas las tablas
+    await db.sync({ alter: true }); 
     console.log("✅ Tablas creadas correctamente");
 
     console.log("📋 Modelos detectados:", Object.keys(db.models));
