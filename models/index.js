@@ -1,5 +1,5 @@
 //models/index.js
-
+import db from "../config/db.js";
 import Users from "./UserModel.js";
 import Alumnos from "./AlumnosModel.js";
 import Grados from "./GradosModel.js";
@@ -18,3 +18,4 @@ export {
      Incidencia,
      Reportes
 }
+export default db;
