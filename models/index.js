@@ -10,7 +10,7 @@ import Reportes from "./ReportesModel.js";
 import Tareas from "./TareasModel.js";
 // relaciones faltantes
 
-Alumnos.hasMany(Incidencia,{foreignKey:"alumnosId"});
+Alumnos.hasMany(Incidencia,{foreignKey:"alumnoId"});
 Incidencia.belongsTo(Alumnos, { foreignKey: "alumnoId" }); 
 
  Alumnos.hasMany(Reportes, { foreignKey: "alumnoId" });
