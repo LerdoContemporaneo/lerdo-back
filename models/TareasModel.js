@@ -1,7 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js";
  
-
 const { DataTypes } = Sequelize;
 
 const Tareas = db.define("tareas",
@@ -31,7 +30,7 @@ const Tareas = db.define("tareas",
     fechaAsignacion: { 
       type: DataTypes.DATEONLY,
       allowNull: false,
-      defaultValue: () => new Date().toISOString().slice(0, 10),
+      defaultValue: Sequelize.NOW,
     },
     fechaEntrega: { 
       type: DataTypes.DATEONLY,
@@ -46,18 +45,15 @@ const Tareas = db.define("tareas",
       allowNull: false,
       validate: {
         notEmpty: true,
+        isInt: true,
       },
     },
 
   },
   {
     freezeTableName: true,
+    timestamps: true,
   }
 );
-
-
-
-
-
 
 export default Tareas;

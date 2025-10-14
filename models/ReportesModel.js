@@ -1,8 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js";
 
-
-
 const { DataTypes } = Sequelize;
 
 const Reportes = db.define( "reportes", {
@@ -27,15 +25,14 @@ const Reportes = db.define( "reportes", {
       allowNull: false,
       validate: {
         notEmpty: true,
+        isInt: true,
       },
     },
   },
   {
     freezeTableName: true,
+    timestamps: true,
   }
 );
-
-   
-
 
     export default Reportes;
