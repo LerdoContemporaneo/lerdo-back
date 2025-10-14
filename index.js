@@ -17,7 +17,6 @@ import TareaRoute from "./routes/TareaRoute.js";
 
 import "./models/index.js";
 
-
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
 }
@@ -28,6 +27,7 @@ const app = express();
 const SequelizeSessionStore = SequelizeStore(session.Store);
 const store = new SequelizeSessionStore({
   db: db,
+  tableName: "Sessions",
 });
 
 
@@ -43,14 +43,10 @@ app.use(
   })
 );
 
-
 app.use(
   cors({
     credentials: true,
-    origin: [
-      "http://localhost:3000",
-     
-    ],
+    origin: ["http://localhost:3000"],
   })
 );
 
@@ -73,8 +69,13 @@ app.use(TareaRoute);
     await db.authenticate();
     console.log("✅ Conexión a MySQL exitosa");
 
-    await db.sync({ alter: true }); 
-    console.log("✅ Tablas creadas correctamente");
+    // Sincronizar tus modelos
+    await db.sync({ alter: true });
+    console.log("✅ Tablas sincronizadas correctamente");
+
+   
+    await store.sync();
+    console.log("✅ Tabla de sesiones creada o verificada");
 
     console.log("📋 Modelos detectados:", Object.keys(db.models));
   } catch (error) {
@@ -82,7 +83,5 @@ app.use(TareaRoute);
   }
 })();
 
-
 const PORT = process.env.PORT || 3000;
 export default app;
-
