@@ -7,7 +7,7 @@ import Asistencia from "./AsistenciaModel.js";
 import AsistenciaMaestro from "./AsistenciaMaestro.js";
 import Incidencia  from "./IncidenciaModel.js";
 import Reportes from "./ReportesModel.js";
-
+import Tareas from "./TareasModel.js";
 
 export {
     Users,
@@ -16,6 +16,7 @@ export {
     Asistencia,
     AsistenciaMaestro,
      Incidencia,
-     Reportes
+     Reportes,
+     Tareas
 }
 export default db;
