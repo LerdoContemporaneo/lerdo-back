@@ -72,7 +72,7 @@ app.use(TareaRoute);
   try {
     await db.authenticate();
     console.log("✅ Conexión a MySQL exitosa");
-    await db.sync({force: true});
+    await db.sync({alter: true});
     console.log("Tablas creadas")
   } catch (error) {
     console.error("❌ Error al conectar a MySQL:", error.message);
