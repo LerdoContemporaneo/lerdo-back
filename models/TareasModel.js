@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js";
-import Alumnos from "./AlumnosModel.js"; 
+ 
 
 const { DataTypes } = Sequelize;
 
@@ -56,8 +56,7 @@ const Tareas = db.define("tareas",
 );
 
 
-Alumnos.hasMany(Tareas);
-Tareas.belongsTo(Alumnos, { foreignKey: "alumnoId" });
+
 
 
 
