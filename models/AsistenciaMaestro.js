@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js"
-import Users from "./UserModel.js";
+
 
 const { DataTypes } = Sequelize;
 
@@ -35,10 +35,10 @@ maestroId:{
 },
  {
     freezeTableName: true,
+     timestamps: true,
 });
 
 
- Users.hasMany(AsistenciaMaestro,);
- AsistenciaMaestro.belongsTo(Users, {foreignKey: 'maestroId'});
+ 
 
 export default AsistenciaMaestro;

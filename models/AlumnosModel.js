@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js"
-import Grados from "./GradosModel.js";
+
 
 
 const { DataTypes } = Sequelize;
@@ -47,11 +47,11 @@ const Alumnos = db.define('alumnos', {
          
 }, {
             freezeTableName: true,
+             timestamps: true,
         });
 
 
-        Grados.hasMany(Alumnos,);
-        Alumnos.belongsTo(Grados, {foreignKey: 'gradoId'});
+       
 
         export default  Alumnos;
         

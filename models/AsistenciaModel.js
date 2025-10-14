@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js"
-import Alumnos from "./AlumnosModel.js";
+
 
 
 const { DataTypes } = Sequelize;
@@ -34,11 +34,11 @@ const Asistencia = db.define('asistencia', {
   },
   {
     freezeTableName: true,
+     timestamps: true,
   }
 );
 
-Alumnos.hasMany(Asistencia);
-Asistencia.belongsTo(Alumnos, { foreignKey: "alumnoId" });   
+ 
 
 
 export default Asistencia;
