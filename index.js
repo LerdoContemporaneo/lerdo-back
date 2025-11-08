@@ -46,7 +46,8 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
       "https://lerdo-front.vercel.app",
     ],
 
@@ -56,15 +57,15 @@ app.use(
 app.use(express.json());
 
 
-app.use(UserRoute);
-app.use(AlumnoRoute);
-app.use(AsistenciaMaestroRoute);
-app.use(AsistenciaRoute);
-app.use(GradosRoute);
-app.use(IncidenciaRoute);
-app.use(ReportesRoute);
-app.use(AuthRoute);
-app.use(TareaRoute);
+app.use("/api", UserRoute);
+app.use("/api", AlumnoRoute);
+app.use("/api", AsistenciaMaestroRoute);
+app.use("/api", AsistenciaRoute);
+app.use("/api", GradosRoute);
+app.use("/api", IncidenciaRoute);
+app.use("/api", ReportesRoute);
+app.use("/api", AuthRoute);
+app.use("/api", TareaRoute);
 
 
 (async () => {
