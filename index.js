@@ -56,6 +56,9 @@ app.use(
 
 app.use(express.json());
 
+app.get("api/test", (req, res) => {
+  res.json({ message: "API is working" });
+});
 
 app.use("/api", UserRoute);
 app.use("/api", AlumnoRoute);
